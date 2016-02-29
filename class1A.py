@@ -1,22 +1,13 @@
+# -*- coding: cp936 -*-
 import math
 import random
 
-#ç”Ÿæˆ7-9åŠ å…¶å®ƒæ•°ï¼Œç»“æœåœ¨10åˆ°20ä¹‹é—´çš„ç®—å¼
+#Éú³É7-9¼ÓÆäËüÊı£¬½á¹ûÔÚ10µ½20Ö®¼äµÄËãÊ½
 
-
-problems = []
-for i in range(1, 10):
-	for j in range(1, 10):
-                #if(i + j > 10):
-                problems.append("{0}+{1}=".format(i, j))
-
-col = 0;
-line = ''
-span = "\t"
-lenth = len(problems)
+span= '    ';
 
 def getRandomChar(str1):
-    pos = math.floor(random.random()*len(str1));
+    pos = int(math.floor(random.random()*len(str1)));
     return str1[pos];
 
 def paddingWithSpace(str1, length):
@@ -36,45 +27,52 @@ def getTitle():
         equation+="=";
         return equation.ljust(12, ' ');
 
-print("å†™å‡ºå¾—æ•°");
-for i in range(0, 200):
-    line = line + getTitle() + span
-    col += 1
-    if(col % 5 == 0):
-        print(line)
-        line = ""
-		
-print("åœ¨()ä¸­å¡«å†™åˆé€‚çš„æ•°ï¼Œä½¿ç­‰å¼æˆç«‹");
-for i in range(0, 200):
-    first = int(math.ceil(random.random()*10));
-    second = first + int(math.ceil(random.random()*10));
-    equation = "{0}+(  )={1}".format(first, second).ljust(12, ' ');
-    line = line + equation + span
-    col += 1
-    if(col % 5 == 0):
-        print(line)
-        line = ""
+def printTitle(number):
+        col = 0;
+        line = ''
+        print("Ğ´³öµÃÊı");
+        for i in range(0, number):
+            line = line + getTitle() + span
+            col += 1
+            if(col % 5 == 0):
+                print(line)
+                line = ""
+                        
+        print("ÔÚ()ÖĞÌîĞ´ºÏÊÊµÄÊı£¬Ê¹µÈÊ½³ÉÁ¢");
+        for i in range(0, number):
+            first = int(math.ceil(random.random()*10));
+            second = first + int(math.ceil(random.random()*10));
+            equation = "{0}+(  )={1}".format(first, second).ljust(12, ' ');
+            line = line + equation + span
+            col += 1
+            if(col % 5 == 0):
+                print(line)
+                line = ""
 
-def getTitle1():
-    first = int(math.ceil(random.random()*10));
-    second = int(math.ceil(random.random()*10));
-    op1 = getRandomChar("+-");
-    equation = "{0}{1}{2}".format(first, op1, second);
-    if(int(eval(equation)) < 1):
-        return getTitle1();
-    else:
-        return equation;
+        def getTitle1():
+            first = int(math.ceil(random.random()*10));
+            second = int(math.ceil(random.random()*10));
+            op1 = getRandomChar("+-");
+            equation = "{0}{1}{2}".format(first, op1, second);
+            if(int(eval(equation)) < 1):
+                return getTitle1();
+            else:
+                return equation;
 
-print("åœ¨()ä¸­å¡«å†™+ - =");
-for i in range(0, 200):
-    eq = getTitle1();
-    op2 = getRandomChar("+-");
-    diff = getRandomChar("012");
-    result = int(eval(eq+op2+diff));
-    equation = "{0}(  ){1}".format(eq, second).ljust(12, ' ');
-    line = line + equation + span
-    col += 1
-    if(col % 5 == 0):
-        print(line)
-        line = ""
+        print("ÔÚ()ÖĞÌîĞ´> < =");
+        for i in range(0, number):
+            eq = getTitle1();
+            op2 = getRandomChar("+-");
+            diff = getRandomChar("012");
+            result = int(eval(eq+op2+diff));
+            equation = "{0}(  ){1}".format(eq, second).ljust(12, ' ');
+            line = line + equation + span
+            col += 1
+            if(col % 5 == 0):
+                print(line)
+                line = ""
 
+        print("");
+
+for i in range(1,11):
+        printTitle(20);
