@@ -1,0 +1,10 @@
+*/bin/*
+.git/*
+*~
+*.txt
+*.swp
+.DS_Store
+*/__pycache__/*
+
+*.log
+~$*
